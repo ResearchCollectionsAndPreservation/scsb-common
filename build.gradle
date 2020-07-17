@@ -27,9 +27,9 @@ test {
 }
 
 jar {
-    enabled = true
+      enabled = true
     archiveBaseName = 'phase4-scsb-common'
-    archiveVersion = '1.0'
+    archiveVersion = System.properties["archiveVersion"]
 }
 
 group = 'org.recap'
