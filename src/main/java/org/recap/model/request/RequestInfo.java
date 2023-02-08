@@ -16,6 +16,8 @@ public class RequestInfo {
     private String itemOwningInstitution;
     private String requestRecieved;
     private String requestedItemBarcode;
+    private String responseMessage;
+    private String validationMessage;
     private Integer statusId;
     private String status;
     private Date date;

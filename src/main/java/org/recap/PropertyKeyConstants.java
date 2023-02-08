@@ -190,6 +190,7 @@ public class PropertyKeyConstants {
 
     public static final String RUN_ONGOING_MA_GROUPING_PROCESS = "run.ongoing.ma.grouping.process";
     public static final String OCOLC_INSTITUTION = "ocolc.institution";
+    public static final String GATEWAY_VALIDATION_EXCEPTIONS = "gateway.request.validation.exceptions";
 
     /* ILS Property Keys */
     public static class ILS {

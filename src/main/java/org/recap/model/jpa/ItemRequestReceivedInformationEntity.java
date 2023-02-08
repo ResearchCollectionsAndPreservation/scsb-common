@@ -1,6 +1,8 @@
 package org.recap.model.jpa;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.recap.model.jpa.AbstractEntity;
 
@@ -22,6 +24,8 @@ import java.util.Date;
 )
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemRequestReceivedInformationEntity extends AbstractEntity<Integer> {
     @Column(
             name = "REQUEST_INSTITUTION"
@@ -43,6 +47,21 @@ public class ItemRequestReceivedInformationEntity extends AbstractEntity<Integer
     private String requestedItemBarcode;
 
     @Column(
+            name = "RESPONSE_MESSAGE"
+    )
+    private String responseMessage;
+
+    @Column(
+            name = "VALIDATION_STATUS"
+    )
+    private String validationStatus;
+
+    @Column(
+            name = "REQUESTED_DATE"
+    )
+    private Date date;
+
+    @Column(
             name = "STATUS_ID"
     )
     private Integer statusId;
@@ -51,8 +70,4 @@ public class ItemRequestReceivedInformationEntity extends AbstractEntity<Integer
     )
     private String status;
 
-    @Column(
-            name = "DATE"
-    )
-    private Date date;
 }

@@ -19,6 +19,7 @@ public class RequestLogReportRequest {
     private String toDate;
     private String institution;
     private String status;
+    private String validationStatus;
     private Integer gatewayRequestLogId;
     private List<RequestInfo> requestInfoList = new ArrayList<>();
 }

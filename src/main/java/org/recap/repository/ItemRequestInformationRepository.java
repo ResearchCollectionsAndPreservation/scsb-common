@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Dinakar N created on 14/09/22
@@ -28,8 +30,8 @@ public interface ItemRequestInformationRepository extends BaseRepository<ItemReq
     Page<ItemRequestReceivedInformationEntity> findByInstitutionAndStatus(Pageable pageable, @Param("requestInstitution") String requestInstitution, @Param("status") String status);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "update ItemRequestReceivedInformationEntity entity set entity.status = :status , entity.statusId = :statusId, entity.date = :date where entity.id = :id")
-    void update(@Param("id") Integer id, @Param("status") String status, @Param("statusId") Integer statusId, @Param("date") Date date);
+    @Query(value = "update ItemRequestReceivedInformationEntity entity set entity.responseMessage = :responseMessage ,entity.status = :status , entity.statusId = :statusId, entity.date = :date where entity.id = :id")
+    void update(@Param("responseMessage") String responseMessage,@Param("id") Integer id, @Param("status") String status, @Param("statusId") Integer statusId, @Param("date") Date date);
 
     @Query(value = "select requests from ItemRequestReceivedInformationEntity requests where requests.statusId = :statusId order by requests.date desc")
     Page<ItemRequestReceivedInformationEntity> findAllByStatusId(Pageable pageable, @Param("statusId") Integer statusId);
@@ -54,4 +56,19 @@ public interface ItemRequestInformationRepository extends BaseRepository<ItemReq
 
     @Query(value = "select requests from ItemRequestReceivedInformationEntity requests where requests.date >= :fromDate and requests.status in (:status) order by requests.date desc")
     Optional<List<ItemRequestReceivedInformationEntity>> findAllByDateAndStatus(@Param("fromDate") Date fromDate, @Param("status") String status);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE ItemRequestReceivedInformationEntity e SET e.validationStatus = :validationStatus WHERE e.id IN :ids")
+    void updateAllByIdIn(@Param("validationStatus") String validationStatus, @Param("ids") Set<Integer> ids);
+
+    @Query(value = "select requests from ItemRequestReceivedInformationEntity requests "
+            + " where (requests.requestInstitution = :requestInstitution or :requestInstitution is null or :requestInstitution = '') "
+            + " and (requests.status = :status or  :status is null or :status = '') "
+            + " and (requests.date >= :fromDate or  :fromDate is null or :fromDate = '') "
+            + " and (requests.date <= :toDate or :toDate is null or :toDate = '') "
+            + " and (requests.validationStatus = :validationStatus or  :validationStatus is null or :validationStatus = '') "
+            + " order by requests.date desc")
+    Page<ItemRequestReceivedInformationEntity> findByInstitutionAndStatusAndFromDateAndEndDateAndValidationStatus(Pageable pageable, @Param("requestInstitution") String institution,@Param("status") String status,@Param("fromDate") Date fromDate,@Param("toDate") Date toDate,@Param("validationStatus") String validationStatus);
+
 }
