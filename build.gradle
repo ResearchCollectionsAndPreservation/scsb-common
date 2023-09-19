@@ -34,7 +34,7 @@ jar {
 }
 
 group = 'org.recap'
-version = '2.4'
+version = '2.5'
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
