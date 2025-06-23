@@ -22,10 +22,14 @@ public class ReportsInstitutionForm {
     private long accessionPrivateCount;
     private long accessionSharedCount;
     private long accessionOpenCount;
+    private long accessionCommittedCount;
+    private long accessionUncommittableCount;
     private long subTotalAccessionCount;
     private long deaccessionPrivateCount;
     private long deaccessionSharedCount;
     private long deaccessionOpenCount;
+    private long deaccessionCommittedCount;
+    private long deaccessionUncommittableCount;
     private long subTotalDeaccessionCount;
     private long openCgdCount;
     private long sharedCgdCount;
