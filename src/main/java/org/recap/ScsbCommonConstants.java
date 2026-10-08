@@ -6,6 +6,7 @@ public class ScsbCommonConstants {
     public static final String FAILURE = "Failure";
     public static final String SUCCESS = "Success";
     public static final String ITEM_BARCDE_DOESNOT_EXIST = "Item barcode doesn't exist in SCSB database.";
+    public static final String MAX_ITEM_BARCODE_REQUEST_EXCEEDED = "Maximum Allowed limit of 100 Barcodes exceeded";
     public static final String COLUMBIA = "CUL";
     public static final String PRINCETON = "PUL";
     public static final String NYPL = "NYPL";
